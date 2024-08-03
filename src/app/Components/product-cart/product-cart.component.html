@@ -1,0 +1,27 @@
+<div id="product-card">
+  <img [src]="this.product.image" alt="{{ this.product.name }} " />
+  <h2>{{ this.product.name }}</h2>
+  <h2>{{ this.product.price }}</h2>
+  <h2>{{ this.product.inStock }}</h2>
+  <button
+    (click)="
+      addToCart({
+        id: this.product.id,
+
+        name: this.product.name,
+        price: this.product.price,
+        quantity: 1,
+      })
+    "
+    [disabled]="this.product.inStock == 0"
+  >
+    Thêm vào giỏ
+  </button>
+  <!--</div>-->
+  <!--<div id="product-in-cart">-->
+  <!--  <p>{{ this.product.name }}</p>-->
+  <!--  <p>{{ this.product.price }}</p>-->
+  <!--  <p>{{ this.product.quantity }}</p>-->
+  <!--  <button (click)="removeFromCart(i)">Xóa</button>-->
+  <!--</div>-->
+</div>

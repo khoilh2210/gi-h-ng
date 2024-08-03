@@ -1,34 +1,30 @@
 <h1>JK's Store</h1>
+<app-navbar></app-navbar>
 
 <div id="container">
-
   <div id="product-container">
-    <div *ngFor="let product of products; let i = index" id="product-card">
-      <img [src]="product.image" alt="{{product.name}}">
-      <h2>{{ product.name }}</h2>
-      <h2>{{ product.price }}</h2>
-      <h2>{{ product.inStock }}</h2>
-      <button [disabled]="product.inStock == 0" (click)="addToCart(i)">Thêm vào giỏ</button>
-    </div>
-  </div>
-
-  <div id="cart-container">
-    <div *ngFor="let product of cart; let i = index" id="product-in-cart">
-      <p>{{ product.name }}</p>
-      <p>{{ product.price }}</p>
-      <p>{{ product.quantity }}</p>
-      <button (click)="removeFromCart(i)">Xóa</button>
-    </div>
-    <button (click)="checkout()">Thanh toán</button>
+    @for (prod of products; track $index) {
+      <app-product-cart
+        [product]="prod"
+        (buttonClick)="addToCart($event)"
+      ></app-product-cart>
+    }
   </div>
 </div>
+@for (item of cart; track $index) {
+  <h2>{{ item.name }}</h2>
+}
 
-
-
-
-
-
-
+<!--  <div id="cart-container">-->
+<!--    <div *ngFor="let product of cart; let i = index" id="product-in-cart">-->
+<!--      <p>{{ product.name }}</p>-->
+<!--      <p>{{ product.price }}</p>-->
+<!--      <p>{{ product.quantity }}</p>-->
+<!--      <button (click)="removeFromCart(i)">Xóa</button>-->
+<!--    </div>-->
+<!--    <button (click)="checkout()">Thanh toán</button>-->
+<!--  </div>-->
+<!--</div>-->
 
 <!--<h1>JK's Store</h1>-->
 
