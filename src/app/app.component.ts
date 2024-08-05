@@ -5,6 +5,9 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { ProductCartComponent } from './Components/product-cart/product-cart.component';
 import { ProductModel } from './models/product.model';
+import { StoreService } from './services/store.service';
+import { CartComponent } from './Components/cart/cart.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
 
 @Component({
   selector: 'app-root',
@@ -16,32 +19,15 @@ import { ProductModel } from './models/product.model';
     NgIf,
     NavbarComponent,
     ProductCartComponent,
+    CartComponent,
+    CheckoutComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'first_project';
+  constructor(public storeService: StoreService) {}
 }
 
-//   removeFromCart(index: number) {
-//     let findIndex = this.products.findIndex((element) => {
-//       return element.id == this.cart[index].id;
-//     });
 //
-//     this.products[findIndex].inStock += this.cart[index].quantity;
-//     this.cart.splice(index, 1);
-//   }
-//
-//   checkout() {
-//     let totalPrice = this.cart.reduce(
-//       (acc, product) => acc + product.price * product.quantity,
-//       0,
-//     );
-//     alert('Total Price: ' + totalPrice);
-//     this.cart = [];
-//   }
-//
-//   protected readonly events = module;
-//   protected readonly event = event;
-// }

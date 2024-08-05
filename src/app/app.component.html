@@ -3,51 +3,15 @@
 
 <div id="container">
   <div id="product-container">
-    @for (prod of products; track $index) {
-      <app-product-cart
-        [product]="prod"
-        (buttonClick)="addToCart($event)"
-      ></app-product-cart>
+    @for (prod of this.storeService.products; track $index) {
+      <app-product-cart [product]="prod"></app-product-cart>
     }
   </div>
 </div>
-@for (item of cart; track $index) {
-  <h2>{{ item.name }}</h2>
+
+<h2>Cart</h2>
+@for (prod of this.storeService.cart; track $index) {
+  <app-cart [product]="prod"></app-cart>
 }
 
-<!--  <div id="cart-container">-->
-<!--    <div *ngFor="let product of cart; let i = index" id="product-in-cart">-->
-<!--      <p>{{ product.name }}</p>-->
-<!--      <p>{{ product.price }}</p>-->
-<!--      <p>{{ product.quantity }}</p>-->
-<!--      <button (click)="removeFromCart(i)">Xóa</button>-->
-<!--    </div>-->
-<!--    <button (click)="checkout()">Thanh toán</button>-->
-<!--  </div>-->
-<!--</div>-->
-
-<!--<h1>JK's Store</h1>-->
-
-<!--<div id="container">-->
-
-<!--  <div id="product-container">-->
-<!--    @for (product of products; track $index) {-->
-<!--    <div id="product-card">-->
-<!--      <h2>{{ product.name }}</h2>-->
-<!--      <h2>{{ product.price }}</h2>-->
-<!--      <h2>{{ product.inStock }}</h2>-->
-<!--      <button [disabled]="product.inStock == 0 ? true : false" (click)="addToCart($index)">Thêm vào giỏ</button>-->
-<!--    </div>-->
-<!--    }-->
-<!--  </div>-->
-
-<!--  <div id="cart-container">-->
-<!--    @for (product of cart; track $index) {-->
-<!--    <div id="product-in-cart">-->
-<!--      <p>{{ product.name }}</p>-->
-<!--      <p>{{ product.price }}</p>-->
-<!--      <p>{{ product.quantity }}</p>-->
-<!--    </div>-->
-<!--    }-->
-<!--  </div>-->
-<!--</div>-->
+<app-checkout [total]="storeService.total"></app-checkout>

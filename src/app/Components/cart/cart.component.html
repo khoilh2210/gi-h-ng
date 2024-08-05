@@ -1,0 +1,5 @@
+<div id="cart-container">
+  <p>{{ this.product.name }}</p>
+  <p>{{ this.product.price }}</p>
+  <button (click)="this.storeService.deleteCart(product)">Xóa</button>
+</div>

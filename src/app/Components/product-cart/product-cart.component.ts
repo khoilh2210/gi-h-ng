@@ -13,5 +13,6 @@ import { StoreService } from '../../services/store.service';
 export class ProductCartComponent {
   @Input() product!: ProductModel;
 
-  constructor(public storeService: StoreService) {}
+
+  constructor (public storeService: StoreService) {}
 }

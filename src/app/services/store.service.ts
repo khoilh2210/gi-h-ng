@@ -7,7 +7,6 @@ import { ProductModel } from '../models/product.model';
 export class StoreService {
   constructor() {}
 
-  cart: any[] = [];
   products: ProductModel[] = [
     {
       id: 1,
@@ -31,6 +30,10 @@ export class StoreService {
       image: 'assets/vaporfly-3-electric-road-racing-shoes-ZR5Glm.jfif',
     },
   ];
+  total: number = 0;
+  cart: any[] = [];
+
+  // checkout: any[] = [];
 
   addToCart(item: any) {
     let findIndex = this.cart.findIndex((element) => element.id == item.id); // Đi tìm trong giỏ hàng có tồn tại sp mà mình muốn thêm hay không
@@ -55,4 +58,37 @@ export class StoreService {
     }
     console.log(this.cart);
   }
+
+  deleteCart(product: ProductModel) {
+    let findIndex = this.cart.findIndex((element) => element.id == product.id);
+    let productIndex = this.products.findIndex(
+      (element) => element.id == product.id,
+    );
+    if (findIndex != -1) {
+      if (this.cart[findIndex].quantity > 1) {
+        this.cart[findIndex].quantity--;
+      } else {
+        this.cart.splice(findIndex, 1);
+      }
+      this.products[productIndex].inStock++;
+    }
+    console.log(this.cart);
+  }
+
+  totalCost(): number {
+    this.total = 0;
+    for (let prod of this.cart) {
+      this.total += prod.price * prod.quantity;
+    }
+    return this.total;
+  }
 }
+
+//fix there
+
+// checkoutCart() {
+//   this.checkout = [...this.cart];
+//   this.cart = [];
+//   console.log('Checkout complete: ', this.checkout);
+// }
+// }
